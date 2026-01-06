@@ -241,6 +241,41 @@
         font-family: "Avenir Next", "Gill Sans", sans-serif;
       }
 
+      .reserve-form {
+        margin-top: 28px;
+        display: grid;
+        gap: 18px;
+        max-width: 640px;
+      }
+
+      .field {
+        display: grid;
+        gap: 8px;
+        font-family: "Futura", "Trebuchet MS", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.7rem;
+        color: var(--syrup);
+      }
+
+      .field select {
+        appearance: none;
+        padding: 14px 16px;
+        border-radius: 14px;
+        border: 2px solid rgba(27, 0, 58, 0.2);
+        background: rgba(255, 255, 255, 0.8);
+        font-family: "Avenir Next", "Gill Sans", sans-serif;
+        font-size: 0.95rem;
+        text-transform: none;
+        letter-spacing: 0.02em;
+      }
+
+      .reserve-form .cta {
+        width: fit-content;
+        border: none;
+        cursor: pointer;
+      }
+
       footer {
         padding: 32px 8vw 48px;
         font-family: "Futura", "Trebuchet MS", sans-serif;
@@ -273,8 +308,8 @@
           appear, we shimmer, we vanish.
         </p>
         <div class="cta-row">
-          <a class="cta" href="#">Reserve A Tray</a>
-          <a class="cta secondary" href="#">Get The Drop</a>
+          <a class="cta" href="#reserve">Reserve A Tray</a>
+          <a class="cta secondary" href="#reserve">Get The Drop</a>
         </div>
       </div>
       <div class="glitch-card">
@@ -304,15 +339,77 @@
         Live in the city, live in the glitch. We are already pulsing through our
         first wave of drop zones. Catch us while the sugar code is stable.
       </p>
-      <div class="city-wrap">
-        <div class="city">New York</div>
-        <div class="city">Miami</div>
-        <div class="city">Hoboken</div>
-        <div class="city">Philadelphia</div>
-        <div class="city">San Fransciso</div>
-      </div>
+        <div class="city-wrap">
+          <a class="city" href="?city=New%20York#reserve" data-city="New York">New York</a>
+          <a class="city" href="?city=Miami#reserve" data-city="Miami">Miami</a>
+          <a class="city" href="?city=Hoboken#reserve" data-city="Hoboken">Hoboken</a>
+          <a class="city" href="?city=Philadelphia#reserve" data-city="Philadelphia">Philadelphia</a>
+          <a class="city" href="?city=San%20Fransciso#reserve" data-city="San Fransciso">San Fransciso</a>
+        </div>
+    </section>
+
+    <section id="reserve">
+      <p class="note">
+        Reserve a tray and choose your glitch. We do orders by the dozen and we
+        will auto-slot the city when you tap a live location.
+      </p>
+      <form class="reserve-form" action="https://formspree.io/f/mzdzlynd" method="POST">
+        <input type="hidden" name="_subject" value="Vanellope tray request" />
+        <label class="field">
+          <span>Glitch Flavor</span>
+          <select name="glitch" required>
+            <option value="">Choose a glitch</option>
+            <option value="Glitch 01">Glitch 01: Cotton candy vodka + electric lime</option>
+            <option value="Glitch 02">Glitch 02: Black cherry bourbon + midnight sugar</option>
+            <option value="Glitch 03">Glitch 03: Mango chili tequila + neon sprinkle</option>
+            <option value="Glitch 04">Glitch 04: Sparkling peach gin + cloud whip</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Dozens</span>
+          <select name="dozens" required>
+            <option value="">Select quantity</option>
+            <option value="1">1 dozen (12)</option>
+            <option value="2">2 dozen (24)</option>
+            <option value="3">3 dozen (36)</option>
+            <option value="4">4 dozen (48)</option>
+            <option value="5">5 dozen (60)</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>City</span>
+          <select name="city" id="reserve-city" required>
+            <option value="">Choose city</option>
+            <option>New York</option>
+            <option>Miami</option>
+            <option>Hoboken</option>
+            <option>Philadelphia</option>
+            <option>San Fransciso</option>
+          </select>
+        </label>
+        <button class="cta" type="submit">Submit Tray Request</button>
+      </form>
     </section>
 
     <footer>Vanellope Von Schweetz · Jello Shot Glitch Club</footer>
+    <script>
+      const cityLinks = document.querySelectorAll("[data-city]");
+      const citySelect = document.getElementById("reserve-city");
+      const params = new URLSearchParams(window.location.search);
+      const prefillCity = params.get("city");
+
+      if (prefillCity && citySelect) {
+        citySelect.value = prefillCity;
+      }
+
+      cityLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          const city = link.getAttribute("data-city");
+          if (city && citySelect) {
+            citySelect.value = city;
+          }
+        });
+      });
+    </script>
   </body>
 </html>
