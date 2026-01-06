@@ -173,6 +173,45 @@
         z-index: 1;
       }
 
+      .nutrition-table {
+        margin-top: 28px;
+        width: 100%;
+        border-collapse: collapse;
+        font-family: "Avenir Next", "Gill Sans", sans-serif;
+        font-size: 0.95rem;
+        background: rgba(255, 255, 255, 0.75);
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+      }
+
+      .nutrition-table th,
+      .nutrition-table td {
+        padding: 14px 16px;
+        text-align: left;
+        border-bottom: 1px solid rgba(27, 0, 58, 0.12);
+      }
+
+      .nutrition-table th {
+        font-family: "Futura", "Trebuchet MS", sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        font-size: 0.7rem;
+        color: var(--syrup);
+        background: rgba(255, 126, 219, 0.12);
+      }
+
+      .nutrition-table tr:last-child td {
+        border-bottom: none;
+      }
+
+      .nutrition-note {
+        margin-top: 12px;
+        font-size: 0.85rem;
+        color: rgba(23, 18, 15, 0.7);
+        font-family: "Avenir Next", "Gill Sans", sans-serif;
+      }
+
       .flavor {
         padding: 14px 16px;
         border-radius: 16px;
@@ -346,6 +385,45 @@
           <a class="city" href="?city=Philadelphia#reserve" data-city="Philadelphia">Philadelphia</a>
           <a class="city" href="?city=San%20Fransciso#reserve" data-city="San Fransciso">San Fransciso</a>
         </div>
+    </section>
+
+    <section>
+      <p class="note">
+        Nutrition per piece (1/12 of a tray). Estimates vary with batch and
+        garnish.
+      </p>
+      <table class="nutrition-table">
+        <thead>
+          <tr>
+            <th>Glitch</th>
+            <th>Estimated Calories</th>
+            <th>Estimated ABV</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Glitch 01: Cotton Candy Vodka &amp; Electric Lime</td>
+            <td>~60 kcal</td>
+            <td>~8% ABV</td>
+          </tr>
+          <tr>
+            <td>Glitch 02: Blackberry Cherry Bourbon &amp; Midnight Sugar</td>
+            <td>~65-70 kcal</td>
+            <td>~9% ABV</td>
+          </tr>
+          <tr>
+            <td>Glitch 03: Mango Chili Tequila &amp; Neon Sprinkle</td>
+            <td>~60-65 kcal</td>
+            <td>~8.5% ABV</td>
+          </tr>
+          <tr>
+            <td>Glitch 04: Sparkling Peach Gin &amp; Cloud Whip</td>
+            <td>~55-60 kcal</td>
+            <td>~7.5% ABV</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="nutrition-note">All values are estimates for informational purposes only.</p>
     </section>
 
     <section id="reserve">
